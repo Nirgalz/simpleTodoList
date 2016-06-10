@@ -1,0 +1,11 @@
+#categories, #tasks, #viewer {
+    display: inline-block;
+}
+
+#categories, #tasks {
+    width: 20%;
+}
+
+#viewer {
+    width: 60%;
+}
