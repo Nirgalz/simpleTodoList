@@ -18,12 +18,12 @@
 
 <div id="viewer">
     <h1>Viewer</h1>
-    
+    <?php include('view.php'); ?>
 </div>
 
 <div id="tasks">
     <h1>Tasks</h1>
-
+    <?php include('create_todo.php') ?>
 </div>
 
 
