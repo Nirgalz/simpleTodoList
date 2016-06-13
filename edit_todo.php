@@ -1,59 +1,54 @@
 <?php
-$page = null;
-if (isset($_GET['page'])){
-    $page = $_GET['page'];
+include('config.php');
+
+if (isset($_GET['id'])){
+    $id = $_GET['id'];
 };
-switch ($page){
-    case 'ecrire':
-        include('create_todo.php');
-        break;
-    case 'editer':
-        include('edit_todo.php');
-        break;
-    default:
-        echo "<h1>default</h1>";
-}
-?>
-<?php
 
-$task = $mysqli->query("SELECT * FROM tasks");
+
+// on récupère l'article existant par le parametre GET id
+
+$task = $mysqli->query("SELECT * FROM tasks WHERE t_id = $id");
 $categories = $mysqli->query('SELECT * FROM categories');
-$priorities = $mysqli->query('SELECT * FROM priority');
+$priority = $mysqli->query('SELECT * FROM priority');
 
-if (!$task || !$categories || !$priorities) {
+if (!$task || !$categories || !$priority) {
     echo "Erreur sql : " . $mysqli->error;
     exit();
 }
-
+$task = $task->fetch_object();
 ?>
 
-<form action="enregistrer-article.php" method="get">
-    <input type="hidden" name="id" value="">
+<form action="save_edit.php" method="get">
+    <input type="hidden" name="id" value="<?=$id?>">
 
-    <input required type="text" placeholder="creer une tache" name="title" value=""><br>
-    <input required type="date"><br>
-    <select required name="categorie">
+    <input required type="text" placeholder="Titre de l'article" name="title" value="<?= $task->title ?>"><br>
+    <input required name="deadline" type="date" value="<?=$task->deadline ?>"><br>
+
+    <select required name="c_id">
         <?php while ($categorie = $categories->fetch_object()) { ?>
             <option value="<?= $categorie->c_id ?>"
-                <?php if ($categorie->c_id == $categorie->c_id) {
+                <?php if ($categorie->c_id == $task->c_id) {
                     echo 'selected';
                 } ?>
             >
-                <?= $categorie->title ?>
+                <?= $categorie->c_title?>
             </option>
         <?php } ?>
     </select>
-    <select required name="priority">
-        <?php while ($priority = $priorities->fetch_object()) { ?>
-            <option value="<?= $priority->p_id ?>"
-                <?php if ($priority->p_id == $priority->p_id) {
+    <select required name="p_id">
+        <?php while ($priorities = $priority->fetch_object()) { ?>
+            <option value="<?= $priorities->p_id ?>"
+                <?php if ($priorities->p_id == $task->p_id) {
                     echo 'selected';
                 } ?>
             >
-                <?= $priority->title ?>
+                <?= $priorities->p_title?>
             </option>
         <?php } ?>
     </select>
+
+
 
     <button>Enregistrer</button>
 </form>

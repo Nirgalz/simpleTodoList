@@ -1,4 +1,6 @@
-<?php include('config.php'); ?>
+<?php include('config.php');
+
+?>
 <!doctype html>
 <html>
 <head>
@@ -23,7 +25,15 @@
 
 <div id="tasks">
     <h1>Tasks</h1>
-    <?php include('create_todo.php') ?>
+    <?php
+        if (isset($_GET['id']) ) {
+            include('edit_todo.php');
+        }
+        else {
+
+            include('create_todo.php');
+        }
+     ?>
 </div>
 
 

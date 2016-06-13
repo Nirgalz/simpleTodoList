@@ -8,7 +8,7 @@ if (!$categories) {
 ?>
 <?php
     while ($category = $categories->fetch_object()) { ?>
-<?= $category->title ?> <br>
+<a href="index.php?cat=<?= $category->c_id ?>"><?= $category->c_title ?> </a><br>
    <?php }
 ?>
 
