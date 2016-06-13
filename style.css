@@ -1,11 +1,39 @@
 #categories, #tasks, #viewer {
-    display: inline-block;
+    position: relative;
+    float: left;
+    border: solid 1px;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 20px;
 }
 
 #categories, #tasks {
     width: 20%;
+    background-color: #7485ff;
+    color: aliceblue;
 }
 
 #viewer {
-    width: 60%;
+    width: 50%;
+    background-color: #96baff;
+    color: aliceblue;
+}
+
+a {
+    text-decoration: none;
+    background-color: #96baff;
+    float: right;
+    box-sizing: border-box;
+}
+
+a:hover {
+    background-color: #7485ff;
+    color: #c1d3ff;
+}
+
+p {
+    color: black;
+    float: left;
 }

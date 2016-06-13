@@ -46,7 +46,7 @@ $task = $task->fetch_object();
                 <?= $priorities->p_title?>
             </option>
         <?php } ?>
-    </select>
+    </select> <br>
 
 
 

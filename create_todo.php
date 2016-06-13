@@ -19,7 +19,7 @@ $priorities = $mysqli->query('SELECT * FROM priority');
         <?php while ($priority = $priorities->fetch_object()) { ?>
             <option value="<?= $priority->p_id ?>"><?= $priority->p_title ?></option>
         <?php } ?>
-    </select>
+    </select> <br>
 
     <button>Enregistrer</button>
 </form>

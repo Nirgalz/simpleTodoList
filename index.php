@@ -20,7 +20,15 @@
 
 <div id="viewer">
     <h1>Viewer</h1>
-    <?php include('view.php'); ?>
+    <?php 
+    if (isset($_GET['ids'])) {
+        include('suppr.php');
+    }
+    else {
+        include('view.php');
+    }
+     
+    ?>
 </div>
 
 <div id="tasks">
